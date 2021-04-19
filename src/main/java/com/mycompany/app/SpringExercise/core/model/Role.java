@@ -1,5 +1,7 @@
 package com.mycompany.app.SpringExercise.core.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 

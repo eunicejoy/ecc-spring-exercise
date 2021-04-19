@@ -1,6 +1,10 @@
 package com.mycompany.app.SpringExercise.core.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.context.event.SmartApplicationListener;
+
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -49,6 +53,13 @@ public class Person{
     @Column(name="currently_employed")
     private String currentlyEmployed;
 
+    @OneToMany(mappedBy ="person")
+    @JsonManagedReference
+    private List<Contact> contacts;
+
+    @OneToMany(mappedBy = "person")
+    @JsonManagedReference
+    private List<PersonRole> roles;
     public Person() {
     }
 
@@ -220,6 +231,22 @@ public class Person{
 
     public void setCurrentlyEmployed(String currentlyEmployed) {
         this.currentlyEmployed = currentlyEmployed;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public List<PersonRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<PersonRole> roles) {
+        this.roles = roles;
     }
 
     @Override

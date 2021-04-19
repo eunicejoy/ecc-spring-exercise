@@ -31,14 +31,13 @@ public class RoleController {
         Role role = roleRepository.findById(roleId)
         .orElseThrow(()->new ResourceNotFoundException("Role with " + roleId + " id does not exist."));
 
-        if(roleDetail.getRoleName() == ""){
+        if(roleDetail.getRoleName().equals("")){
             role.setRoleName(role.getRoleName());
         } else{
             role.setRoleName(roleDetail.getRoleName());
         }
 
-        Role updatedRole = roleRepository.save(role);
-        return updatedRole;
+        return roleRepository.save(role);
     }
 
     @DeleteMapping("roles/{id}")
